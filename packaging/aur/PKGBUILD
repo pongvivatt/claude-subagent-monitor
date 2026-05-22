@@ -1,0 +1,35 @@
+# Maintainer: benpvv <pongvivatt@gmail.com>
+pkgname=claude-agent-monitor-git
+_pkgname=claude-agent-monitor
+pkgver=r0.0000000
+pkgrel=1
+pkgdesc="Live view of Claude Code sub-agents as a GTK4 window and Waybar module"
+arch=('any')
+url="https://github.com/pongvivatt/claude-subagent-monitor"
+license=('MIT')
+depends=('python' 'python-gobject' 'gtk4' 'librsvg')
+optdepends=('waybar: status bar module showing the running-agent count'
+            'hyprland: window rules for the floating monitor window')
+makedepends=('git' 'python-build' 'python-installer' 'python-wheel' 'python-hatchling')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+source=("$_pkgname::git+https://github.com/pongvivatt/claude-subagent-monitor.git")
+sha256sums=('SKIP')
+install="$pkgname.install"
+
+pkgver() {
+    cd "$_pkgname"
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+build() {
+    cd "$_pkgname"
+    python -m build --wheel --no-isolation
+}
+
+package() {
+    cd "$_pkgname"
+    python -m installer --destdir="$pkgdir" dist/*.whl
+    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}

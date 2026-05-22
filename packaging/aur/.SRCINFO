@@ -1,0 +1,24 @@
+pkgbase = claude-agent-monitor-git
+	pkgdesc = Live view of Claude Code sub-agents as a GTK4 window and Waybar module
+	pkgver = r0.0000000
+	pkgrel = 1
+	url = https://github.com/pongvivatt/claude-subagent-monitor
+	arch = any
+	license = MIT
+	makedepends = git
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-wheel
+	makedepends = python-hatchling
+	depends = python
+	depends = python-gobject
+	depends = gtk4
+	depends = librsvg
+	optdepends = waybar: status bar module showing the running-agent count
+	optdepends = hyprland: window rules for the floating monitor window
+	provides = claude-agent-monitor
+	conflicts = claude-agent-monitor
+	source = claude-agent-monitor::git+https://github.com/pongvivatt/claude-subagent-monitor.git
+	sha256sums = SKIP
+
+pkgname = claude-agent-monitor-git

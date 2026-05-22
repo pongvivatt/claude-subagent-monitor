@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "claude-agent-monitor"
+version = "0.1.0"
+description = "Monitor Claude Code sub-agents live on your desktop and in Waybar"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "benpvv", email = "pongvivatt@gmail.com" }]
+keywords = ["claude", "claude-code", "waybar", "hyprland", "gtk4", "agents", "monitor"]
+classifiers = [
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: Developers",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Utilities",
+]
+# PyGObject (gi) must be installed system-wide: sudo pacman -S python-gobject gtk4 librsvg
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/pongvivatt/claude-subagent-monitor"
+Repository = "https://github.com/pongvivatt/claude-subagent-monitor"
+Issues = "https://github.com/pongvivatt/claude-subagent-monitor/issues"
+
+[project.scripts]
+claude-agent-monitor = "claude_agent_monitor.monitor:main"
+claude-agent-monitor-hook = "claude_agent_monitor.hook:main"
+claude-agent-monitor-waybar = "claude_agent_monitor.waybar:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["claude_agent_monitor"]
